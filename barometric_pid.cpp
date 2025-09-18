@@ -1,20 +1,13 @@
 //I am using the Adafruit_BMP180 as my Barometric Sensor. The Adafruit_BMP085 library is compatible with the Adafruit_BMP180.
 #include <Adafruit_BMP085.h>
+#define T0 288.15f
+#define L 0.0065f
+#define M 0.0289644f
+#define R 8.3144598f
 bool measuredBasePressure = false;
 bool BMPconnected = false;
-// All constants cached rather than recomputed every call of findheight()
-//reference tempertature at sea level in kelvin
-constexpr float T0 = 288.15;
-//temperature lapse rate in kelvin/m
-constexpr float L = 0.0065;
-//molar mass of air in KJ/mol
-constexpr float M = 0.0289644;
-//universal gas constant in J/mol*K
-constexpr float R = 8.3144598;
-//gravity in m/s^2
-constexpr float g = 9.8;
 
-constexpr float exponent = (R * L) / (M * g);
+const float exponent = (R * L) / (M * g);
 
 Adafruit_BMP085 BMP;
 float heightNow = 0;
